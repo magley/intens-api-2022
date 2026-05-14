@@ -20,6 +20,6 @@ spec:
           image: "{{ .Values.image.name}}:{{ .Values.image.tag }}"
           ports:
             - containerPort: {{ .Values.port }}
-          env:
-            - name: PORT
-              value: "{{ .Values.port }}"
+          envFrom:
+            - configMapRef:
+                name: {{ .Values.appName }}
