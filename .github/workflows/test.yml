@@ -1,0 +1,27 @@
+name: "Run web API tests"
+
+on:
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  run-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v6
+
+      - name: Set up JDK
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+          architecture: x64
+          cache: maven
+
+      - name: Run Maven verification phase
+        run: mvn --batch-mode --update-snapshots verify
+        env:
+          PORT: 8080
+
