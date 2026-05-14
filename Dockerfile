@@ -6,8 +6,8 @@ WORKDIR /app
 COPY pom.xml .
 COPY src ./src
 
-RUN --mount=type=cache,target=/root/.m2 \
-	mvn clean package -DskipTests
+RUN --mount=type=cache,target=/root/.m2,id=maven-cache \
+    mvn clean package -DskipTests
 
 # [2] Run
 
