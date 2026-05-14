@@ -6,12 +6,12 @@ WORKDIR /app
 COPY pom.xml .
 COPY src ./src
 
-RUN --mount=type=cache,target=/root/.m2 \
-	mvn clean package -DskipTests
+RUN --mount=type=cache,target=/root/.m2,id=maven-cache \
+    mvn clean package -DskipTests
 
 # [2] Run
 
-FROM eclipse-temurin:8-jdk-alpine AS run
+FROM eclipse-temurin:17-jdk-alpine AS run
 WORKDIR /app
 
 COPY --from=build /app/target/*.jar app.jar
