@@ -24,7 +24,7 @@ environment variable (default `8080`).
 ### Using Kubernetes
 
 ```sh
-helm [install|upgrade] ./charts/api api
+helm [install|upgrade] api charts/api 
 ```
 
 Kubernetes deployment has been tested using
