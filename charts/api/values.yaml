@@ -3,5 +3,5 @@ namespace: default
 replicas: 1
 image:
   name: magley/intens-api-2022
-  tag: "0.1.0"
+  tag: "latest"
 port: "8080"
