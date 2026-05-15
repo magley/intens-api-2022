@@ -1,0 +1,7 @@
+appName: intens-api-2022
+namespace: default
+replicas: 1
+image:
+  name: magley/intens-api-2022
+  tag: "latest"
+port: "8080"
