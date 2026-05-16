@@ -6,7 +6,7 @@ WORKDIR /app
 COPY pom.xml .
 COPY src ./src
 
-RUN --mount=type=cache,target=/root/.m2,id=s/d7d5c1ea-20a7-42b6-84d4-4845464fd54a-/root/.m2 \
+RUN --mount=type=cache,id=s/d7d5c1ea-20a7-42b6-84d4-4845464fd54a-/root/.m2,target=/root/.m2 \
     mvn clean package -DskipTests
 
 # [2] Run
