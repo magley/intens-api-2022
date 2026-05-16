@@ -6,7 +6,7 @@ on:
       - master
 
 jobs:
-  deploy:
+  deploy-dockerhub:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -44,3 +44,16 @@ jobs:
         run: |
           docker push ${{ secrets.DOCKER_IMAGE_NAME }}:${{ env.VERSION }}
           docker push ${{ secrets.DOCKER_IMAGE_NAME }}:latest
+
+  deploy-railway:
+    runs-on: ubuntu-latest
+    container: ghcr.io/railwayapp/cli:latest
+    env:
+      SVC_ID: ${{ secrets.RAILWAY_SERVICE_ID }}
+      RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v6
+
+      - name: Deploy to Railway
+        run: railway up --service=${{ env.SVC_ID }}
